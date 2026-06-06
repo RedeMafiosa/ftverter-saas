@@ -8,9 +8,10 @@ function convertYouTube(url, outputPath, format) {
 
     return new Promise((resolve, reject) => {
 
-        const stream = ytdlp.execStream(url, {
-            format: "bestaudio"
-        });
+      const stream = ytdl(url, {
+    filter: "audioonly",
+    quality: "highestaudio"
+});
 
         ffmpeg(stream)
             .audioBitrate(192)
