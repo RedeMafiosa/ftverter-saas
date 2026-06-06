@@ -1,6 +1,6 @@
 const ffmpeg = require("fluent-ffmpeg");
 const ffmpegPath = require("ffmpeg-static");
-const ytdlp = require("yt-dlp-exec");
+const ytdl = require("ytdl-core");
 
 ffmpeg.setFfmpegPath(ffmpegPath);
 
