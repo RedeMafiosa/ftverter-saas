@@ -39,20 +39,18 @@ router.post("/convert", upload.single("file"), async (req, res) => {
 /* =========================
    DOWNLOAD
 ========================= */
-router.get("/download/:id", (req, res) => {
+app.get("/download/:file", (req, res) => {
 
-    const filePath = storage.getFile(req.params.id);
+    const filePath = path.join(__dirname, "uploads", req.params.file);
 
-    if (!filePath || !fs.existsSync(filePath)) {
+    if (!fs.existsSync(filePath)) {
         return res.status(404).send("Ficheiro expirado");
     }
 
     res.download(filePath, () => {
         fs.unlink(filePath, () => {});
-        storage.removeFile(req.params.id);
     });
 });
-
 /* =========================
    PAGES
 ========================= */
